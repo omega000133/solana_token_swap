@@ -208,7 +208,6 @@ export async function swapToken(type: SwapInstruction, sending_amount: number): 
 export async function reportBalances(): Promise<void> {
   // Payer
   console.log("Payer balance = ",  await get_balance(payer.publicKey));
-
   console.log("Payer Token balance = ", await get_token(payerAta));
 
   // Store
