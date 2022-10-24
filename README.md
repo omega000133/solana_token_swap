@@ -24,9 +24,10 @@ npm run start
 The app will be available at: http://localhost:8080
 
 # Done
-- Swap 1 Sol for 10 Tokens from Program's PDA (Rust) <br />
-- Swap 10 Tokens for 1 Sol from Program's PDA (Rust) <br />
-- Web3 script to interact with Program (Typescript) <br />
+- Create new Token on Solana Devnet
+- Swap 1 Sol for 10 Tokens with Contract Program's PDA (Rust) <br />
+- Swap 10 Tokens for 1 Sol with Contract Program's PDA (Rust) <br />
+- Web3 script to interact with Contract Program (Typescript) <br />
 - Web application for UI checking (Html, Javascript) <br />
 # Not yet finish
 - Unit testing (need more time for reseaching Unit test, but it doesn't matter since the Program already worked successfully !)
