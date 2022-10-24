@@ -9,12 +9,12 @@
     <link href="/libraries/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
     <title>
-        Home Page
+      Solana Smart Contract
     </title>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Home Page</a>
+      <a class="navbar-brand" href="#">Solana Smart Contract</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,7 +23,69 @@
     </nav>
 
     <div class="container-fluid ml-3">
-      <!-- Title C++ -->
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <h2>User Account</h2>
+          <!-- Address -->
+          <div class="row mt-3">
+            <div class="col-md-2">
+              <h5>Address:</h5>
+            </div>
+            <div class="col-md-8">
+              <h5 id="user_address">address value</h5>
+            </div>
+          </div>
+          <!-- Sol balance -->
+          <div class="row mt-3">
+            <div class="col-md-2">
+              <h5>Sol:</h5>
+            </div>
+            <div class="col-md-8 text-success">
+              <h5 id="user_balance">sol value</h5>
+            </div>
+          </div>
+          <!-- Token balance -->
+          <div class="row mt-3">
+            <div class="col-md-2">
+              <h5>Token:</h5>
+            </div>
+            <div class="col-md-8 text-warning">
+              <h5 id="user_token">token value</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h2>Smart Contract Account</h2>
+          <!-- Address -->
+          <div class="row mt-3">
+            <div class="col-md-2">
+              <h5>Address:</h5>
+            </div>
+            <div class="col-md-8">
+              <h5 id="program_address">address value</h5>
+            </div>
+          </div>
+          <!-- Sol balance -->
+          <div class="row mt-3">
+            <div class="col-md-2">
+              <h5>Sol:</h5>
+            </div>
+            <div class="col-md-8 text-success">
+              <h5 id="program_balance">sol value</h5>
+            </div>
+          </div>
+          <!-- Token balance -->
+          <div class="row mt-3">
+            <div class="col-md-2">
+              <h5>Token:</h5>
+            </div>
+            <div class="col-md-8 text-warning">
+              <h5 id="program_token">token value</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Title -->
       <div class="row mt-3">
         <div class="col-md-7">
           <button type="button" class="btn btn-success"><h2>Solana Smart Contract</h2></button>
@@ -53,6 +115,11 @@
 
     <script type="text/javascript" src="/libraries/jquery-3.6.0.min.js"></script>
     <script src="/libraries/bootstrap.min.js"></script>
+    <script src="/script/main.js"></script>
+
+    <script>
+      window.onload = () => main();
+    </script>
   </body>
 
   <style>

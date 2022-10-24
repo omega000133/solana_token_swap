@@ -34,11 +34,11 @@ let connection: Connection;
 /**
  * Keypair associated to the fees' payer
  */
-let payer: Keypair;
-let payerAta: PublicKey;
-let mint: PublicKey;
-let store: PublicKey;
-let storeAta: PublicKey;
+export let payer: Keypair;
+export let payerAta: PublicKey;
+export let mint: PublicKey;
+export let store: PublicKey;
+export let storeAta: PublicKey;
 
 /**
  * Program id
@@ -208,27 +208,28 @@ export async function swapToken(): Promise<void> {
  */
 export async function reportBalances(): Promise<void> {
   // Payer
-  console.log("Payer balance = ",  await connection.getBalance(payer.publicKey) / LAMPORTS_PER_SOL);
+  console.log("Payer balance = ",  await get_balance(payer.publicKey));
 
-  const web3 = require("@solana/web3.js");
-  await (async () => {
-    const solana = new web3.Connection("https://api.devnet.solana.com");
-    let res = await solana.getTokenAccountBalance(payerAta);
-
-    console.log("Payer Token balance = ", res.value.uiAmount);
-  })();
+  console.log("Payer Token balance = ", await get_token(payerAta));
 
   // Store
-  console.log("Store balance = ",  await connection.getBalance(store) / LAMPORTS_PER_SOL);
-
-  // const web3 = require("@solana/web3.js");
-  await (async () => {
-    const solana = new web3.Connection("https://api.devnet.solana.com");
-    let res = await solana.getTokenAccountBalance(storeAta);
-
-    console.log("Store Token balance = ", res.value.uiAmount);
-  })();
-
+  console.log("Store balance = ",  await get_balance(store));
+  console.log("Store Token balance = ", await get_token(storeAta));
 
   // Mint = FnzDLQPD8TcE9DmdHnPbDow76ys3HkHeufvrYTF6ijGR
+}
+
+export async function get_balance(pubkey: PublicKey) {
+  return await connection.getBalance(pubkey) / LAMPORTS_PER_SOL;
+}
+
+export async function get_token(pubkey: PublicKey) {
+  const web3 = require("@solana/web3.js");
+  let res: any;
+  await (async () => {
+    const solana = new web3.Connection("https://api.devnet.solana.com");
+    res = await solana.getTokenAccountBalance(pubkey);
+  })();
+
+  return res.value.uiAmount;
 }
