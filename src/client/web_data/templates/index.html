@@ -32,7 +32,7 @@
               <h5>Address:</h5>
             </div>
             <div class="col-md-8">
-              <h5 id="user_address">address value</h5>
+              <button id="btn_user_address" onclick="go_to_user_address()" type="button" class="btn btn-primary"><h7 class="mt-1" id="user_address">address value</h7></button>
             </div>
           </div>
           <!-- Sol balance -->
@@ -62,7 +62,7 @@
               <h5>Address:</h5>
             </div>
             <div class="col-md-8">
-              <h5 id="program_address">address value</h5>
+              <button id="btn_program_address" onclick="go_to_program_address()" type="button" class="btn btn-primary"><h7 class="mt-1" id="program_address">address value</h7></button>
             </div>
           </div>
           <!-- Sol balance -->
@@ -103,6 +103,16 @@
           <h5>=> Swap 10 Token for 1 Sol</h5>
         </div>
       </div>
+      <!-- Lastest Transaction -->
+      <div class="row mt-5">
+        <div class="col-md-2">
+          <h5>Lastest Transaction:</h5>
+        </div>
+        <div class="col-md-8">
+          <button onclick="go_to_latest_transaction()" type="button" class="btn btn-primary"><h7 class="mt-1" id="latest_transaction_address"></h7></button>
+        </div>
+      </div>
+
       <!-- Author -->
       <div class="row mt-5">
         <div class="col-md-1">

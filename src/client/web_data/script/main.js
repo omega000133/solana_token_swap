@@ -1,3 +1,6 @@
+var user_address = "";
+var program_address = "";
+var latest_transaction_address = "";
 
 function main() {
   update_UI();
@@ -10,11 +13,11 @@ function main() {
 
 async function update_UI() {
   // User address
-  let user_address = await httpGet(window.location.origin + '/get_user_address');
+  user_address = await httpGet(window.location.origin + '/get_user_address');
   $('#user_address').text(user_address.value);
 
   // Program address
-  let program_address = await httpGet(window.location.origin + '/get_program_address');
+  program_address = await httpGet(window.location.origin + '/get_program_address');
   $('#program_address').text(program_address.value);
 
   // User balance
@@ -65,13 +68,14 @@ function makeRequest(method, url) {
 
 async function swap_sol_to_token() {
   disable_all_button();
-  let program_token = await httpGet(window.location.origin + '/swap_sol_to_token?amount=1');
+  latest_transaction_address = await httpGet(window.location.origin + '/swap_sol_to_token?amount=1');
+
   setTimeout(enable_all_button, 5000);
 }
 
 async function swap_token_to_sol() {
   disable_all_button();
-  let program_token = await httpGet(window.location.origin + '/swap_token_to_sol?amount=10');
+  latest_transaction_address = await httpGet(window.location.origin + '/swap_token_to_sol?amount=10');
   setTimeout(enable_all_button, 5000);
 }
 
@@ -83,4 +87,21 @@ function disable_all_button() {
 function enable_all_button() {
   $("#btn_sol_to_token").attr("class","btn btn-success mt-2");
   $("#btn_token_to_sol").attr("class","btn btn-success mt-2");
+  update_latest_transaction();
+}
+
+function update_latest_transaction() {
+  $('#latest_transaction_address').text(latest_transaction_address.value);
+}
+
+function go_to_user_address() {
+  window.open("https://explorer.solana.com/address/" + user_address.value + "?cluster=devnet");
+}
+
+function go_to_program_address() {
+  window.open("https://explorer.solana.com/address/" + program_address.value + "?cluster=devnet");
+}
+
+function go_to_latest_transaction() {
+  window.open("https://explorer.solana.com/tx/" + latest_transaction_address.value + "?cluster=devnet");
 }

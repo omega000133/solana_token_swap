@@ -172,7 +172,7 @@ export async function createStoreAccount(): Promise<void> {
 /**
  * Swap Token
  */
-export async function swapToken(type: SwapInstruction, sending_amount: number): Promise<void> {
+export async function swapToken(type: SwapInstruction, sending_amount: number): Promise<string> {
 
   const payload = new Payload({
     id: type,
@@ -195,7 +195,7 @@ export async function swapToken(type: SwapInstruction, sending_amount: number): 
     data: payloadSerBuf,
   });
 
-  await sendAndConfirmTransaction(
+  return await sendAndConfirmTransaction(
     connection,
     new Transaction().add(instruction),
     [payer],

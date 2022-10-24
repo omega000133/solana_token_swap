@@ -10,8 +10,6 @@ const web_data_path = 'src/client/web_data';
 
 export function start_server() {
   const server = createServer(async (request: IncomingMessage, response: ServerResponse) => {
-    console.log("request.url = ", request.url);
-
     // index.html
     if (request.url == '/') {
       response.statusCode = 200;
