@@ -1,0 +1,38 @@
+{
+  "name": "helloworld",
+  "version": "0.0.1",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solana-labs/example-helloworld"
+  },
+  "keywords": [],
+  "author": "huutam1991@gmail.com",
+  "scripts": {
+    "start": "ts-node src/client/main.ts",
+    "start-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://localhost:8899/health start",
+    "clean": "npm run clean:rust",
+    "build": "npm run build:rust",
+    "deploy": "solana program deploy dist/program/solana_test.so",
+    "build:rust": "cargo build-bpf --manifest-path=./src/rust/Cargo.toml --bpf-out-dir=dist/program",
+    "clean:rust": "cargo clean --manifest-path=./src/rust/Cargo.toml && rm -rf ./dist",
+    "test:program-rust": "cargo test-bpf --manifest-path=./src/program-rust/Cargo.toml"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.62.0",
+    "@solana/spl-token": "^0.3.5",
+    "borsh": "^0.7.0",
+    "mz": "^2.7.0",
+    "yaml": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/mz": "^2.7.2",
+    "@types/yaml": "^1.9.7",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.0.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
