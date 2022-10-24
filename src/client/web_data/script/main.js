@@ -1,6 +1,8 @@
-var user_address = "";
-var program_address = "";
-var latest_transaction_address = "";
+var user_address = null;
+var program_address = null;
+var latest_transaction_address = null;
+var user_token = null;
+var last_user_token = 0;
 
 function main() {
   update_UI();
@@ -29,7 +31,7 @@ async function update_UI() {
   $('#program_balance').text(program_balance.value);
 
   // User token
-  let user_token = await httpGet(window.location.origin + '/get_user_token');
+  user_token = await httpGet(window.location.origin + '/get_user_token');
   $('#user_token').text(user_token.value);
 
   // Program token
@@ -68,15 +70,37 @@ function makeRequest(method, url) {
 
 async function swap_sol_to_token() {
   disable_all_button();
+  save_last_user_token();
+
   latest_transaction_address = await httpGet(window.location.origin + '/swap_sol_to_token?amount=1');
 
-  setTimeout(enable_all_button, 5000);
+  check_user_token_update();
 }
 
 async function swap_token_to_sol() {
   disable_all_button();
+  save_last_user_token();
+
   latest_transaction_address = await httpGet(window.location.origin + '/swap_token_to_sol?amount=10');
-  setTimeout(enable_all_button, 5000);
+
+  check_user_token_update();
+}
+
+function save_last_user_token() {
+  last_user_token = 0;
+  if (user_token != null) {
+    last_user_token = user_token.value;
+  }
+}
+
+function check_user_token_update() {
+  setTimeout(() => {
+    if (user_token.value != last_user_token) {
+      enable_all_button();
+    } else {
+      check_user_token_update();
+    }
+  }, 1000);
 }
 
 function disable_all_button() {
