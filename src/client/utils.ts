@@ -14,13 +14,13 @@ import {Keypair} from '@solana/web3.js';
 async function getConfig(): Promise<any> {
   // Path to Solana CLI config file
   const CONFIG_FILE_PATH = path.resolve(
-    os.homedir(),
-    '.config',
-    'solana',
+    'data',
     'cli',
     'config.yml',
   );
   const configYml = await fs.readFile(CONFIG_FILE_PATH, {encoding: 'utf8'});
+  console.log("CONFIG_FILE_PATH = ", CONFIG_FILE_PATH);
+  console.log("configYml = ", configYml);
   return yaml.parse(configYml);
 }
 
