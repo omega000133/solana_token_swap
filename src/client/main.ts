@@ -1,3 +1,4 @@
+import { start_server } from './server';
 import {
   establishConnection,
   establishPayer,
@@ -8,6 +9,7 @@ import {
 } from './solana_test';
 
 async function main() {
+
   // Establish connection to the cluster
   await establishConnection();
 
@@ -21,17 +23,19 @@ async function main() {
   await createStoreAccount();
   await reportBalances();
 
-  // Swap Token
-  await swapToken();
+  // // Swap Token
+  // await swapToken();
 
-  // Find out how many times that account has been greeted
-  await reportBalances();
+  // // Find out how many times that account has been greeted
+  // await reportBalances();
 
   console.log('Success');
 }
 
 main().then(
-  () => process.exit(),
+  () => {
+    start_server();
+  },
   err => {
     console.error(err);
     process.exit(-1);

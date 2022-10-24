@@ -19,8 +19,9 @@
     "test:program-rust": "cargo test-bpf --manifest-path=./src/program-rust/Cargo.toml"
   },
   "dependencies": {
-    "@solana/web3.js": "^1.62.0",
     "@solana/spl-token": "^0.3.5",
+    "@solana/web3.js": "^1.62.0",
+    "@types/http-server": "^0.12.1",
     "borsh": "^0.7.0",
     "mz": "^2.7.0",
     "yaml": "^2.0.0"
