@@ -7,10 +7,10 @@ var last_user_token = 0;
 function main() {
   update_UI();
 
-  // Refresh UI at every 5 seconds
+  // Refresh UI at every 2 seconds
   setInterval(async () => {
     await update_UI();
-  }, 5000);
+  }, 2000);
 }
 
 async function update_UI() {
