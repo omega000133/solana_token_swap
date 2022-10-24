@@ -1,10 +1,10 @@
 {
-  "name": "helloworld",
+  "name": "Solana Token Swap",
   "version": "0.0.1",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/solana-labs/example-helloworld"
+    "url": "https://github.com/huutam1991/solana_token_swap"
   },
   "keywords": [],
   "author": "huutam1991@gmail.com",
