@@ -172,11 +172,10 @@ export async function createStoreAccount(): Promise<void> {
 /**
  * Swap Token
  */
-export async function swapToken(): Promise<void> {
-  let sending_amount = 1;
+export async function swapToken(type: SwapInstruction, sending_amount: number): Promise<void> {
 
   const payload = new Payload({
-    id: SwapInstruction.SolToToken,
+    id: type,
     amount: sending_amount * LAMPORTS_PER_SOL,
   });
 

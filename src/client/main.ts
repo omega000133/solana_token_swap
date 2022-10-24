@@ -7,6 +7,7 @@ import {
   reportBalances,
   createStoreAccount,
 } from './solana_test';
+import { SwapInstruction } from './utils';
 
 async function main() {
 
@@ -24,7 +25,7 @@ async function main() {
   await reportBalances();
 
   // // Swap Token
-  // await swapToken();
+  // await swapToken(SwapInstruction.TokenToSol, 100);
 
   // // Find out how many times that account has been greeted
   // await reportBalances();

@@ -1,7 +1,9 @@
 
 import { createServer, IncomingMessage, ServerResponse } from 'http';
 import * as fs from 'fs';
-import { get_balance, get_token, payer, payerAta, store, storeAta } from './solana_test';
+import querystring from 'querystring';
+import { get_balance, get_token, payer, payerAta, store, storeAta, swapToken } from './solana_test';
+import { SwapInstruction } from './utils';
 
 const port = 8080;
 const web_data_path = 'src/client/web_data';
@@ -50,6 +52,29 @@ export function start_server() {
     else if (request.url == '/get_program_token') {
       response.statusCode = 200;
       response.end(JSON.stringify({value: await get_token(storeAta)}));
+    }
+    // Swap Token
+    else if (request.url?.indexOf('/swap_sol_to_token') == 0) {
+      let params_str = request.url.substring(request.url.indexOf('?') + 1, request.url.length);
+      let params = querystring.parse(params_str);
+      let amount: number = 0;
+      if (params.amount != undefined && params.amount != null) {
+        amount = parseInt(params.amount.toString());
+      }
+
+      response.statusCode = 200;
+      response.end(JSON.stringify({value: await swapToken(SwapInstruction.SolToToken, amount)}));
+    }
+    else if (request.url?.indexOf('/swap_token_to_sol') == 0) {
+      let params_str = request.url.substring(request.url.indexOf('?') + 1, request.url.length);
+      let params = querystring.parse(params_str);
+      let amount: number = 0;
+      if (params.amount != undefined && params.amount != null) {
+        amount = parseInt(params.amount.toString());
+      }
+
+      response.statusCode = 200;
+      response.end(JSON.stringify({value: await swapToken(SwapInstruction.TokenToSol, amount)}));
     }
     // Bad Request
     else {
